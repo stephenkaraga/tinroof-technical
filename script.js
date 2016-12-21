@@ -10,6 +10,7 @@ myApp.controller('mainController', ['$scope', '$http', function($scope, $http) {
     });
 
 	$scope.newTodo = '';
+	$scope.editTodo = '';
 
     $scope.add = function(newToDo) {
     	console.log($scope.newTodo);
@@ -36,10 +37,10 @@ myApp.controller('mainController', ['$scope', '$http', function($scope, $http) {
     		const url = "todo/" + name;
 	    	$http.put(url, newObj).then(function(response) {
 	        	$scope.toDos[index].name = name;
-	    	},
+	    	}, function(err) {
 	    		console.log('Error updating ToDo');
 	    		console.log(err);
-	    	);
+	    	});
     	};
     };
 

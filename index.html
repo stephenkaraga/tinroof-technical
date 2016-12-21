@@ -6,7 +6,7 @@
     <link rel='stylesheet' href="style.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<script src="angular.js"> </script>
-	<script src="script.js"> </script>
+	<script src="main.js"> </script>
   </head>
   <body ng-app="myApp" ng-controller="mainController">
   	<div class="input-group">
@@ -15,15 +15,17 @@
 	    <button class="btn btn-primary" ng-click="add()" style="vertical-align:top;" type="button">Add To Do Item!</button>
 	  </span>
 	</div>
-	<div>
-  		<div ng-repeat="toDo in toDos track by $index" ng-if="toDos && toDos.length" style="width:900px;" class="todo">
+	<div style="width:3000px;">
+  		<div ng-repeat="toDo in toDos track by $index" ng-if="toDos && toDos.length" >
   			<div ng-cloak style="float:left;" ng-cloak> {{toDo.name}}</div>
   			<div style="float:left">
 	  			<span class="input-group-btn">
 			    	<button class="btn btn-warning edit" ng-click="edit($index, toDo)" style="vertical-align:top;" type="button">Edit</button>
 			  	</span>
 			</div>
-		  	<input type="text" class="form-control" style="float:left" ng-model="newToDo" >
+			<div style="float:left">
+		  		<input type="text" class="form-control" style="float:left" ng-model="editTodo" >
+		  	</div>
 		  	<div style="float:left">
 			  	<span class="input-group-btn">
 			    	<button class="btn btn-primary" ng-click="delete($index, toDo)" style="vertical-align:top;" type="button">Delete</button>

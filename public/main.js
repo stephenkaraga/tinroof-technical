@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp',[]);
 
-myApp.controller('mainController', ['$scope' '$http,' function($scope, $http) {
+myApp.controller('mainController', ['$scope', '$http', function($scope, $http) {
 
 	$http.get("todos").then(function(response) {
         $scope.toDos = response.data.todos || [];
