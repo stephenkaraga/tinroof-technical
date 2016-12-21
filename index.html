@@ -5,7 +5,8 @@
     <title>Tin Roof To Do App</title>
     <link rel='stylesheet' href="style.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+	<script src="angular.js"> </script>
+	<script src="script.js"> </script>
   </head>
   <body ng-controller="mainController">
   	<div class="input-group">
@@ -15,21 +16,20 @@
 	  </span>
 	</div>
 	<div>
-		<div class="input-group">
-		  <input type="text" class="form-control" ng-model="newToDo" >
-		  <span class="input-group-btn">
-		</div>
-		<div ng-repeat="toDo in toDos track by $index" ng-if="toDos && toDos.length" class="todo">
+  		<div ng-repeat="toDo in toDos track by $index" ng-if="toDos && toDos.length" style="width:900px;" class="todo">
   			<div ng-cloak style="float:left;" ng-cloak> {{toDo.name}}</div>
-  			<span class="input-group-btn">
-		    	<button class="btn btn-warning edit" ng-click="edit($index, toDo)" style="vertical-align:top;" type="button">Edit</button>
-		  	</span>
-		  	<span class="input-group-btn">
-		    	<button class="btn btn-primary" ng-click="delete($index, toDo)" style="vertical-align:top;" type="button">Delete</button>
-		  	</span>
-			<input ng-model="editTodo" type="text" class="form-control">
+  			<div style="float:left">
+	  			<span class="input-group-btn">
+			    	<button class="btn btn-warning edit" ng-click="edit($index, toDo)" style="vertical-align:top;" type="button">Edit</button>
+			  	</span>
+			</div>
+		  	<input type="text" class="form-control" style="float:left" ng-model="newToDo" >
+		  	<div style="float:left">
+			  	<span class="input-group-btn">
+			    	<button class="btn btn-primary" ng-click="delete($index, toDo)" style="vertical-align:top;" type="button">Delete</button>
+			  	</span>
+			</div>
 	  	</div>
   	</div>
-    <script src="script.js"></script>
   </body>
 </html>

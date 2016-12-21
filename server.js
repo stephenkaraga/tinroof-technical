@@ -13,7 +13,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'));
 
 db.open(function(err, db) {
     if(!err) {
@@ -30,8 +30,6 @@ db.open(function(err, db) {
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('./public'));
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
 });

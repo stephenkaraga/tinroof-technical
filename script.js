@@ -1,10 +1,11 @@
-var myApp = angular.module('myApp',[]);
+var myApp = angular.module('myApp', []);
 
-myApp.controller('mainController', ['$scope' '$http,' function($scope, $http) {
+myApp.controller('mainController', ['$scope', '$http,' function($scope, $http) {
 
 	$http.get("todos").then(function(response) {
-        $scope.toDos = response.data.todos;
+        $scope.toDos = response.data.todos || [];
     }, function(err) {
+    	$scope.toDos = [];
     	console.log(err);
     });
 
