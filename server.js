@@ -3,6 +3,7 @@ const app = express();
 const monk = require('monk');
 const mongoskin = require('mongoskin');
 const bodyParser = require('body-parser');
+const path = require('path');
 const db = mongoskin.db('mongodb://tinroof:tinroof1@ds141128.mlab.com:41128/tinroof-app', {safe:true});
 db.createCollection('todos');
 
@@ -29,9 +30,8 @@ db.open(function(err, db) {
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
-app.use(express.static('public'))
-
-
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('./public'));
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
 });

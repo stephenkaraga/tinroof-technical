@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title>Tin Roof To Do App</title>
     <link rel='stylesheet' href="style.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src=”https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js”></script>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
   </head>
   <body ng-controller="mainController">
   	<div class="input-group">
@@ -14,18 +14,22 @@
 	    <button class="btn btn-primary" ng-click="add()" style="vertical-align:top;" type="button">Add To Do Item!</button>
 	  </span>
 	</div>
-  	<div class="main">
-	  		<div ng-repeat="toDo in toDos track by $index" ng-if="toDos && toDos.length" class="todo">
-	  			<div ng-cloak style="float:left;" ng-cloak> {{toDo.name}}</div>
-	  			<div class="input-group-btn" style="float:left;">
-			    	<button class="btn btn-danger delete" ng-click="delete($index, toDo)" style="vertical-align:top;" type="button">Delete</button>
-			    	<button class="btn btn-warning edit" ng-click="edit($index, toDo)" style="vertical-align:top; float:right" type="button">Edit</button>
-	  				<input ng-model="editTodo" type="text" class="form-control">
-			  	</div>
-	  		</div>
+	<div>
+		<div class="input-group">
+		  <input type="text" class="form-control" ng-model="newToDo" >
+		  <span class="input-group-btn">
+		</div>
+		<div ng-repeat="toDo in toDos track by $index" ng-if="toDos && toDos.length" class="todo">
+  			<div ng-cloak style="float:left;" ng-cloak> {{toDo.name}}</div>
+  			<span class="input-group-btn">
+		    	<button class="btn btn-warning edit" ng-click="edit($index, toDo)" style="vertical-align:top;" type="button">Edit</button>
+		  	</span>
+		  	<span class="input-group-btn">
+		    	<button class="btn btn-primary" ng-click="delete($index, toDo)" style="vertical-align:top;" type="button">Delete</button>
+		  	</span>
+			<input ng-model="editTodo" type="text" class="form-control">
 	  	</div>
   	</div>
-  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
   </body>
 </html>
