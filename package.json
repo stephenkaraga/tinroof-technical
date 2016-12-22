@@ -1,0 +1,26 @@
+{
+  "name": "tinroof-technical",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephenkaraga/tinroof-technical.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephenkaraga/tinroof-technical/issues"
+  },
+  "homepage": "https://github.com/stephenkaraga/tinroof-technical#readme",
+  "devDependencies": {
+    "express": "^4.14.0",
+    "mongo": "^0.1.0",
+    "mongoskin": "^2.1.0",
+    "monk": "^3.1.3"
+  }
+}
