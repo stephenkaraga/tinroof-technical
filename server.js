@@ -39,8 +39,6 @@ app.post('/todo', add);
 app.delete('/todo/:name', deleteTodo);
 
 function add(req, res) {
-	console.log('testing');
-	console.log(req.body);
     db.collection('todos').insert(req.body, function(err, result) {
 	    if (err) {
 	    	console.log(err);
