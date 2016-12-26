@@ -5,7 +5,7 @@ const mongoskin = require('mongoskin');
 const bodyParser = require('body-parser');
 const path = require('path');
 const db = mongoskin.db('mongodb://tinroof:tinroof1@ds141128.mlab.com:41128/tinroof-app', {safe:true});
-db.createCollection('todos');
+const util = require('util');
 
 app.use(function(req, res, next) {
   req.db = {};
@@ -31,31 +31,40 @@ db.open(function(err, db) {
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/index.html');
+	res.sendFile('public/index.html');
 });
-app.get('/todos', getAll);
-app.put('/todos/:name', edit);
-app.post('/todos/:name', add);
-app.delete('/todos/:name', deleteTodo);
+app.get('/todo', getAll);
+app.put('/todo/:name', edit);
+app.post('/todo', add);
+app.delete('/todo/:name', deleteTodo);
 
 function add(req, res) {
-    db.collection('todos').save(req.body, function(err, result) {
-	    if (err) return console.log(err);
-	    console.log('Saved to database');
+	console.log('testing');
+	console.log(req.body);
+    db.collection('todos').insert(req.body, function(err, result) {
+	    if (err) {
+	    	console.log(err);
+	    } else {
+	    	console.log('Successfully saved to the database.');
+		    console.log(result);
+		    console.log('Saved to database');
+	    }
   	});
-}
+};
 
 function getAll(req, res) {
-	db.collection('todos').find({}, {}, function(err, docs) {
-		res.json({data:docs});
+	db.collection('todos').find().toArray(function(err, result) {
+	    if (err) throw err;
+	    res.json(result);
 	});
 };
 
 function edit(req, res) {
     db.collection('todos')
-	  .findOneAndUpdate({name: req.params.name}, {
+	  .findOneAndUpdate({'name': req.params.name}, {
 	    $set: {
-	      name: req.body.newName,
+	      name: req.body.name,
+	      modified_at: req.body.modified_at
 	    }
 	  }, {
 	    sort: {_id: -1},
@@ -64,12 +73,13 @@ function edit(req, res) {
 	    if (err) return res.send(err)
 	    res.send(result)
 	  });
-}
+};
 
 function deleteTodo(req, res) {
-    db.collection('todos').findOneAndDelete({name: req.params.name},
+    db.collection('todos').remove({'name': req.params.name},
 	  function(err, result) {
-	    if (err) return res.send(500, err)
+	    if (err) return res.send(500, err);
+	    console.log(req.params.name + ' deleted.');
 	    res.send('Deleted')
   	});
-}
+};

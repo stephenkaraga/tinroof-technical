@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="mainModule" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tin Roof To Do App</title>
+    <link rel='stylesheet' type="text/css" href="style.css">
+	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
+	<script src="vendor/angular/angular.js"> </script>
+	<script src="js/module.js"> </script>
+	<script src="js/controller.js"> </script>
+  </head>
+  <body ng-controller="toDoController">
+  	<div ng-show="!viewingDetails" class="input-group add-to-do">
+	  <input type="text" placeholder="Enter unique name for todo." class="form-control" ng-model="formData.toDo" >
+	  <span class="input-group-btn">
+	    <button class="btn btn-primary" ng-click="add()" class="top-align" type="button">Add To Do Item!</button>
+	  </span>
+	</div>
+	<div class="todos" ng-repeat="toDo in toDos track by $index" ng-show="!viewingDetails" ng-if="toDos && toDos.length > 0" ng-cloak>
+		<div class="row" ng-cloak>
+			<div ng-if="!editing[$index]" class="left todo-name" ng-bind="toDo.name" ng-cloak> &nbsp;</div>
+			<input ng-if="editing[$index]" placeholder="Enter new unique name for todo." type="text" class="form-control left"ng-model="editToDo.name" >
+			<div class="col-md-3 left" ng-cloak>
+				<span class="input-group-btn" ng-cloak>
+					<button ng-if="!editing[$index]" class="btn btn-primary top-align" ng-click="viewDetails($index)" type="button" ng-cloak>View Details</button>
+			    	<button ng-if="!editing[$index]" class="btn btn-warning top-align" ng-click="edit($index, toDo)" type="button" ng-cloak>Edit</button>
+			    	<button ng-if="editing[$index]" class="btn btn-success top-align" ng-click="submitEdit($index, editToDo.name, toDo)" type="button" ng-cloak>Submit Edit</button>
+			    	<button ng-if="editing[$index]" class="btn btn-warning top-align" ng-click="cancelEdit($index, toDo)" type="button">Cancel Edit</button>
+		  		</span>
+		  		<div ng-if="viewingDetails" ng-bind="toDos[$index]">
+		  		</div>
+			</div>
+		  	<div ng-if="!editing[$index]" class="col-md-3 left">
+			  	<span class="input-group-btn">
+			    	<button class="btn btn-danger top-align" ng-click="delete($index, toDo)" type="button">Delete</button>
+			  	</span>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div ng-if="viewingDetails" ng-bind="viewingTodo"></div>
+		<button ng-if="viewingDetails" class="btn btn-primary top-align" ng-click="hideDetails()" type="button">View List</button>
+	</div>
+  </body>
+</html>

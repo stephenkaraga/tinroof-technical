@@ -2,3 +2,23 @@
 	padding-left: 150px;
 	margin-top: 50px;
 }
+
+.left {
+	float:left; 
+}
+
+.add-to-do {
+	margin-bottom:50px;
+}
+
+.top-align {
+	vertical-align:top;
+}
+
+.todos {
+	margin-left:50px;
+}
+
+.todo-name {
+	width:450px;
+}
