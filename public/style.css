@@ -1,14 +1,15 @@
-.main {
-	padding-left: 150px;
-	margin-top: 50px;
-}
-
 .left {
 	float:left; 
 }
 
 .add-to-do {
+	margin-left:20px;
+	margin-top:50px;
 	margin-bottom:50px;
+}
+
+#add-button {
+	margin-bottom:11px;
 }
 
 .top-align {
@@ -21,4 +22,9 @@
 
 .todo-name {
 	width:450px;
+}
+
+.edit-button {
+	margin-left:10px;
+	margin-right:10px;
 }

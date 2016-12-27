@@ -40,13 +40,11 @@ app.delete('/todo/:name', deleteTodo);
 
 function add(req, res) {
     db.collection('todos').insert(req.body, function(err, result) {
-	    if (err) {
-	    	console.log(err);
-	    } else {
-	    	console.log('Successfully saved to the database.');
-		    console.log(result);
-		    console.log('Saved to database');
-	    }
+	    if (err) return res.send(500, err);
+    	console.log('Successfully saved to the database.');
+	    console.log(result);
+	    console.log('Saved to database');
+	    res.send('Added');
   	});
 };
 
@@ -68,8 +66,8 @@ function edit(req, res) {
 	    sort: {_id: -1},
 	    upsert: true
 	  }, (err, result) => {
-	    if (err) return res.send(err)
-	    res.send(result)
+	    if (err) return res.send(500, err)
+	    res.send('Updated')
 	  });
 };
 
@@ -77,7 +75,6 @@ function deleteTodo(req, res) {
     db.collection('todos').remove({'name': req.params.name},
 	  function(err, result) {
 	    if (err) return res.send(500, err);
-	    console.log(req.params.name + ' deleted.');
-	    res.send('Deleted')
+	    res.send('Deleted');
   	});
 };

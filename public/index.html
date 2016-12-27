@@ -13,7 +13,7 @@
   	<div ng-show="!viewingDetails" class="input-group add-to-do">
 	  <input type="text" placeholder="Enter unique name for todo." class="form-control" ng-model="formData.toDo" >
 	  <span class="input-group-btn">
-	    <button class="btn btn-primary" ng-click="add()" class="top-align" type="button">Add To Do Item!</button>
+	    <button class="btn btn-primary top-align" id="add-button" ng-click="add()" type="button">Add To Do Item!</button>
 	  </span>
 	</div>
 	<div class="todos" ng-repeat="toDo in toDos track by $index" ng-show="!viewingDetails" ng-if="toDos && toDos.length > 0" ng-cloak>
@@ -23,7 +23,7 @@
 			<div class="col-md-3 left" ng-cloak>
 				<span class="input-group-btn" ng-cloak>
 					<button ng-if="!editing[$index]" class="btn btn-primary top-align" ng-click="viewDetails($index)" type="button" ng-cloak>View Details</button>
-			    	<button ng-if="!editing[$index]" class="btn btn-warning top-align" ng-click="edit($index, toDo)" type="button" ng-cloak>Edit</button>
+			    	<button ng-if="!editing[$index]" class="btn btn-warning top-align edit-button" ng-click="edit($index, toDo)" type="button" ng-cloak>Edit</button>
 			    	<button ng-if="editing[$index]" class="btn btn-success top-align" ng-click="submitEdit($index, editToDo.name, toDo)" type="button" ng-cloak>Submit Edit</button>
 			    	<button ng-if="editing[$index]" class="btn btn-warning top-align" ng-click="cancelEdit($index, toDo)" type="button">Cancel Edit</button>
 		  		</span>
